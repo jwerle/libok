@@ -32,12 +32,18 @@ ok_done();
 
 ```c
 /**
+ * libok version
+ */
+
+#define OK_VERSION "0.0.1"
+
+/**
  * Increments ok count and
  * outputs a message to stdout
  */
 
 void
-ok (char *);
+ok (char *message);
 
 /**
  * Completes tests and asserts that
@@ -54,7 +60,7 @@ ok_done (void);
  */
 
 void
-ok_expect (int);
+ok_expect (int expected);
 
 /**
  * Returns the expected count

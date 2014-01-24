@@ -9,6 +9,12 @@
 #define OK_H 1
 
 /**
+ * libok version
+ */
+
+#define OK_VERSION "0.0.1"
+
+/**
  * Increments ok count and
  * outputs a message to stdout
  */
