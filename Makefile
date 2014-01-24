@@ -90,11 +90,14 @@ clean:
 
 
 install: all
-	test -d $(PREFIX)/$(DESTDIR) || mkdir $(PREFIX)/$(DESTDIR)
-	cp *.h $(PREFIX)/include/$(DESTDIR)
-	install $(LIB_NAME).h $(PREFIX)/include
-	install $(TARGET_STATIC) $(PREFIX)/lib
-	install $(TARGET_DSO) $(PREFIX)/lib
+	@test -d $(PREFIX)/$(DESTDIR) || mkdir $(PREFIX)/$(DESTDIR)
+	@cp *.h $(PREFIX)/include/$(DESTDIR)
+	@echo "  INSTALL $(LIB_NAME).h";
+	@install $(LIB_NAME).h $(PREFIX)/include
+	@echo "  INSTALL $(TARGET_STATIC)";
+	@install $(TARGET_STATIC) $(PREFIX)/lib
+	@echo "  INSTALL $(TARGET_DSO)";
+	@install $(TARGET_DSO) $(PREFIX)/lib
 
 uninstall:
 	rm -rf $(PREFIX)/$(DESTDIR)
