@@ -4,7 +4,7 @@
   "description": "Super tiny tap output library",
   "repo": "jwerle/libok",
   "src": [
-    "ok.h", "ok.c"
+    "ok.h", "ok.c", "Makefile"
   ],
   "repository": {
     "type": "git",
