@@ -1,36 +1,13 @@
-libok
-=====
 
-Super tiny tap output library
+/**
+ * `ok.h` - libok
+ *
+ * Copyright (C) 2014 Joseph Werle <joseph.werle@gmail.com>
+ */
 
-## install
+#ifndef OK_H
+#define OK_H 1
 
-**clib:**
-
-```sh
-$ clib install jwerle/libok
-```
-
-**source:**
-
-```sh
-$ git clone https://github.com/jwerle/libok.git
-$ cd libok
-$ make
-$ make install
-```
-
-## usage
-
-```c
-ok_expect(1);
-ok("my feature works");
-ok_done();
-```
-
-## api
-
-```c
 /**
  * Increments ok count and
  * outputs a message to stdout
@@ -76,8 +53,5 @@ ok_count ();
 
 void
 ok_reset ();
-```
 
-## license
-
-MIT
+#endif
