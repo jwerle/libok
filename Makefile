@@ -1,4 +1,3 @@
-
 PREFIX ?= /usr/local
 DESTDIR ?= ok
 
@@ -82,7 +81,7 @@ clean:
 	@for item in \
 		$(TEST_MAIN) $(OBJS) $(TARGET_STATIC) \
 		$(TARGET_DSOLIB) $(TARGET_DSO).$(VERSION_MAJOR) \
-		$(TARGET_DSO) $(TARGET_DYLIB) $(TEST_DB_PATH) \
+		$(TARGET_DSO) $(TARGET_DYLIB) \
 		; do \
 		echo "  RM $$item"; \
 		$(RM) -rf $$item; \
