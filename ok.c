@@ -19,7 +19,7 @@ static int ok_expected_;
 void
 ok (char *message) {
   if (NULL == message) {
-    message = "";
+    message = (char *) "";
   }
   printf("ok %d %s\n", ++ok_count_, message);
 }
