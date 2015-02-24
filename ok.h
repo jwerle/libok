@@ -8,6 +8,10 @@
 #ifndef OK_H
 #define OK_H 1
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * libok version
  */
@@ -59,5 +63,9 @@ ok_count ();
 
 void
 ok_reset ();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
