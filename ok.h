@@ -24,7 +24,7 @@ extern "C" {
  */
 
 void
-ok (char *);
+ok (const char *);
 
 /**
  * Completes tests and asserts that
