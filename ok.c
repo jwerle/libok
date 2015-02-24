@@ -17,9 +17,9 @@ static int ok_count_;
 static int ok_expected_;
 
 void
-ok (char *message) {
+ok (const char *message) {
   if (NULL == message) {
-    message = (char *) "";
+    message = (const char *) "";
   }
   printf("ok %d %s\n", ++ok_count_, message);
 }
