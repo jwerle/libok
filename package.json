@@ -1,6 +1,6 @@
 {
   "name": "ok",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Super tiny tap output library",
   "repo": "jwerle/libok",
   "src": [
