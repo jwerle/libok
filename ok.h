@@ -15,7 +15,16 @@ extern "C" {
  * libok version
  */
 
+#ifndef OK_VERSION
 #define OK_VERSION "0.0.1"
+#endif
+
+/**
+ * No-op/void `ok()` function
+ */
+#ifndef okx
+#define okx(_) (void) (_);
+#endif
 
 /**
  * Increments ok count and
