@@ -6,6 +6,7 @@
 
 int
 main (void) {
+  okx("foo", 123, 0);
   ok_expect(4);
   assert(4 == ok_expected());
   ok("beep");

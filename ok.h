@@ -23,7 +23,7 @@ extern "C" {
  * No-op/void `ok()` function
  */
 #ifndef okx
-#define okx(_) (void) (_);
+#define okx(...) (void) (0);
 #endif
 
 /**
@@ -32,7 +32,7 @@ extern "C" {
  */
 
 void
-ok (const char *);
+ok (const char *, ...);
 
 /**
  * Completes tests and asserts that
