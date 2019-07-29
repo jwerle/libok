@@ -38,12 +38,17 @@ ok_done();
 #define OK_VERSION "0.0.1"
 
 /**
+ * No-op/void `ok()` function
+ */
+#define okx(...) (void) (0);
+
+/**
  * Increments ok count and
  * outputs a message to stdout
  */
 
 void
-ok (char *message);
+ok (char *message, ...);
 
 /**
  * Completes tests and asserts that
