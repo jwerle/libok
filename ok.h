@@ -16,7 +16,7 @@ extern "C" {
  */
 
 #ifndef OK_VERSION
-#define OK_VERSION "0.2.0"
+#define OK_VERSION "0.3.0"
 #endif
 
 /**

@@ -35,7 +35,7 @@ ok_done();
  * libok version
  */
 
-#define OK_VERSION "0.2.0"
+#define OK_VERSION "0.3.0"
 
 /**
  * No-op/void `ok()` function
