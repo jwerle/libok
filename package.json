@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "Super tiny tap output library",
   "scripts": {
-    "version": "./update-clib-json && git add ."
+    "version": "./scripts/update-clib-json && git add clib.json"
   },
   "repository": {
     "type": "git",
