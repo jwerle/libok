@@ -1,13 +1,10 @@
 {
-  "name": "ok",
+  "name": "@jwerle/libok",
   "version": "0.2.0",
   "description": "Super tiny tap output library",
-  "repo": "jwerle/libok",
-  "src": [
-    "ok.h",
-    "ok.c",
-    "Makefile"
-  ],
+  "scripts": {
+    "version": "./update-clib-json && git add ."
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:jwerle/libok.git"
