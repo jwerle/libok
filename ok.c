@@ -34,9 +34,14 @@ ok(const char *format, ...) {
 
 void
 ok_done(void) {
-  if (0 != ok_expected_ &&
-      ok_count_ != ok_expected_) {
-    fprintf(stderr, "expected number of success conditions not met.\n");
+  if (0 != ok_expected_ && ok_count_ != ok_expected_) {
+    if (ok_expected_ > ok_count_) {
+      fprintf(stderr, "expected number of success conditions not met.\n");
+    } else {
+      fprintf(stderr,
+        "expected number of success conditions is less than the "
+        "number of given success conditions.\n");
+    }
     exit(1);
   }
 
