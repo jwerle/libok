@@ -63,12 +63,8 @@ extern "C" {
  */
 #define ok(format, ...) ({                                                     \
   if (ok_count() == 0 && ok_failed() == 0) ok_begin(NULL);                     \
-                                                                               \
-  LIBOK_PRINTF("ok %d - " format,                                              \
-    ok_count_inc() + ok_failed(),                                              \
-    ##__VA_ARGS__                                                              \
-  );                                                                           \
-                                                                               \
+  int count = ok_count_inc() + ok_failed();                                    \
+  LIBOK_PRINTF("ok %d - " format, count, ##__VA_ARGS__);                       \
   if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
     LIBOK_PRINTF("\n");                                                        \
   }                                                                            \
@@ -80,11 +76,8 @@ extern "C" {
  */
 #define notok(format, ...) ({                                                  \
   if (ok_count() == 0 && ok_failed() == 0) ok_begin(NULL);                     \
-                                                                               \
-  LIBOK_PRINTF("not ok %d - " format,                                          \
-    ok_count() + ok_failed_inc(),                                              \
-    ##__VA_ARGS__                                                              \
-  );                                                                           \
+  int count = ok_count_inc() + ok_failed();                                    \
+  LIBOK_PRINTF("not ok %d - " format, count, ##__VA_ARGS__);                   \
                                                                                \
   if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
     LIBOK_PRINTF("\n");                                                        \
@@ -182,6 +175,7 @@ static int ok_count_;
 static int ok_failed_;
 static int ok_expected_;
 static bool ok_begin_;
+static bool ok_header_printed_;
 
 void ok_comment (const char *comment) {
   LIBOK_PRINTF("# %s", comment);
@@ -236,9 +230,12 @@ void ok_begin (const char *label) {
     LIBOK_PRINTF("");
   }
 
-  LIBOK_PRINTF("TAP version 14");
-  if (LIBOK_PRINTF_NEEDS_NEWLINE) {
-    LIBOK_PRINTF("\n");
+  if (!ok_header_printed_) {
+    ok_header_printed_ = true;
+    LIBOK_PRINTF("TAP version 14");
+    if (LIBOK_PRINTF_NEEDS_NEWLINE) {
+      LIBOK_PRINTF("\n");
+    }
   }
 
   if (label != NULL) {
@@ -275,6 +272,12 @@ bool ok_done (void) {
     success = false;
   }
 
+  if (LIBOK_PRINTF_NEEDS_NEWLINE) {
+    LIBOK_PRINTF("\n");
+  } else {
+    LIBOK_PRINTF("");
+  }
+
   if (expected == 0) {
     LIBOK_PRINTF("1..%d", count + failed);
     if (LIBOK_PRINTF_NEEDS_NEWLINE) {
@@ -299,6 +302,12 @@ bool ok_done (void) {
     }
 
     success = false;
+  }
+
+  if (LIBOK_PRINTF_NEEDS_NEWLINE) {
+    LIBOK_PRINTF("\n");
+  } else {
+    LIBOK_PRINTF("");
   }
 
   return success;
