@@ -87,17 +87,7 @@ extern "C" {
     LIBOK_PRINTF("\n");                                                        \
   }                                                                            \
                                                                                \
-  LIBOK_PRINTF("   operator: ok");                                             \
-  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
-    LIBOK_PRINTF("\n");                                                        \
-  }                                                                            \
-                                                                               \
-  LIBOK_PRINTF("   expected: \"truthy value\"");                               \
-  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
-    LIBOK_PRINTF("\n");                                                        \
-  }                                                                            \
-                                                                               \
-  LIBOK_PRINTF("   actual:   false");                                          \
+  LIBOK_PRINTF("   severity: fail");                                           \
   if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
     LIBOK_PRINTF("\n");                                                        \
   }                                                                            \
@@ -235,7 +225,7 @@ void ok_begin (const char *label) {
     LIBOK_PRINTF("");
   }
 
-  LIBOK_PRINTF("TAP Version 14");
+  LIBOK_PRINTF("TAP version 14");
   if (LIBOK_PRINTF_NEEDS_NEWLINE) {
     LIBOK_PRINTF("\n");
   }
