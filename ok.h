@@ -19,7 +19,7 @@ extern "C" {
  * libok version
  */
 #ifndef OK_VERSION
-#define OK_VERSION "0.6.1"
+#define OK_VERSION "0.6.2"
 #endif
 
 /**
