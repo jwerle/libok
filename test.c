@@ -1,11 +1,7 @@
-
 #include <assert.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <ok.h>
+#include "ok.h"
 
-int
-main (void) {
+int main (void) {
   okx("foo", 123, 0);
   ok_expect(4);
   assert(4 == ok_expected());
