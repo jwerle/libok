@@ -98,7 +98,7 @@ extern "C" {
     LIBOK_PRINTF("\n");                                                        \
   }                                                                            \
                                                                                \
-  LIBOK_PRINTF("         at  %s (%s:%d)",                                      \
+  LIBOK_PRINTF("         at %s (%s:%d)",                                       \
     __FUNCTION__,                                                              \
     __FILE__,                                                                  \
     __LINE__                                                                   \
