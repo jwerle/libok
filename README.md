@@ -36,7 +36,7 @@ ok_done();
  * libok version
  */
 #ifndef OK_VERSION
-#define OK_VERSION "0.6.0"
+#define OK_VERSION "0.6.1"
 #endif
 
 /**
@@ -104,17 +104,7 @@ ok_done();
     LIBOK_PRINTF("\n");                                                        \
   }                                                                            \
                                                                                \
-  LIBOK_PRINTF("   operator: ok");                                             \
-  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
-    LIBOK_PRINTF("\n");                                                        \
-  }                                                                            \
-                                                                               \
-  LIBOK_PRINTF("   expected: \"truthy value\"");                               \
-  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
-    LIBOK_PRINTF("\n");                                                        \
-  }                                                                            \
-                                                                               \
-  LIBOK_PRINTF("   actual:   false");                                          \
+  LIBOK_PRINTF("   severity: fail");                                           \
   if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
     LIBOK_PRINTF("\n");                                                        \
   }                                                                            \
