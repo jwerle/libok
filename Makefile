@@ -2,7 +2,7 @@ PREFIX ?= /usr/local
 DESTDIR ?= ok
 
 OS = $(shell uname)
-CC ?= cc
+CC ?= clang
 AR = ar
 LN = ln
 RM = rm
@@ -11,7 +11,7 @@ STRIP = strip
 
 LIB_NAME = ok
 VERSION_MAJOR = 0
-VERSION_MINOR = 1
+VERSION_MINOR = 4
 
 TARGET_NAME = lib$(LIB_NAME)
 TARGET_STATIC = $(TARGET_NAME).a
@@ -19,17 +19,14 @@ TARGET_DSOLIB = $(TARGET_NAME).so.$(VERSION_MAJOR).$(VERSION_MINOR)
 TARGET_DYLIB = $(TARGET_NAME).$(VERSION_MAJOR).$(VERSION_MINOR).dylib
 TARGET_DSO = $(TARGET_NAME).so
 
-CFLAGS += -I. \
-          -std=c99 -Wall -O2 \
-          -fvisibility=hidden \
-          -fPIC -pedantic
+CFLAGS += -I.
+CFLAGS += -std=c99 -Wall -O2
+CFLAGS += -fvisibility=hidden
+CFLAGS += -fPIC -pedantic
 
-LDFLAGS += -shared \
-           -soname $(TARGET_DSO).$(VERSION_MAJOR)
+LDFLAGS += -shared -soname $(TARGET_DSO).$(VERSION_MAJOR)
 
-OSX_LDFLAGS += -lc \
-               -Wl,-install_name,$(TARGET_DSO) \
-               -o $(TARGET_DSOLIB) \
+OSX_LDFLAGS += -lc -Wl,-install_name,$(TARGET_DSO) -o $(TARGET_DSOLIB)
 
 SRC = $(wildcard *.c)
 OBJS = $(SRC:.c=.o)
