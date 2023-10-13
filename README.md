@@ -35,7 +35,7 @@ ok_done();
  * libok version
  */
 #ifndef OK_VERSION
-#define OK_VERSION "0.6.4"
+#define OK_VERSION "0.6.5"
 #endif
 
 /**
@@ -114,7 +114,7 @@ ok_done();
     LIBOK_PRINTF("\n");                                                        \
   }                                                                            \
                                                                                \
-  LIBOK_PRINTF("         at  %s (%s:%d)",                                      \
+  LIBOK_PRINTF("          at %s (%s:%d)",                                      \
     __FUNCTION__,                                                              \
     __FILE__,                                                                  \
     __LINE__                                                                   \
