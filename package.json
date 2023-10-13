@@ -1,6 +1,6 @@
 {
   "name": "@jwerle/libok",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Super tiny tap output library",
   "scripts": {
     "version": "./scripts/update-clib-json && git add clib.json"

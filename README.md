@@ -31,11 +31,12 @@ ok_done();
 ## api
 
 ```c
+
 /**
  * libok version
  */
 #ifndef OK_VERSION
-#define OK_VERSION "0.5.0"
+#define OK_VERSION "0.6.0"
 #endif
 
 /**
@@ -78,7 +79,8 @@ ok_done();
  * outputs a message to stdout
  */
 #define ok(format, ...) ({                                                     \
-  LIBOK_PRINTF("ok %d ", ok_count_inc());                                      \
+  if (ok_count() == 0 && ok_failed() == 0) ok_begin(NULL);                     \
+  LIBOK_PRINTF("ok %d - ", ok_count_inc() + ok_failed());                      \
   LIBOK_PRINTF(format, ##__VA_ARGS__);                                         \
   if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
     LIBOK_PRINTF("\n");                                                        \
@@ -86,12 +88,82 @@ ok_done();
 })
 
 /**
+ * Outputs a a "not ok"  message to stdout.
+ * Increments not ok count.
+ */
+#define notok(format, ...) ({                                                  \
+  if (ok_count() == 0 && ok_failed() == 0) ok_begin(NULL);                     \
+  LIBOK_PRINTF("not ok %d - ", ok_count() + ok_failed_inc());                  \
+  LIBOK_PRINTF(format, ##__VA_ARGS__);                                         \
+  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
+    LIBOK_PRINTF("\n");                                                        \
+  }                                                                            \
+                                                                               \
+  LIBOK_PRINTF("   ---");                                                      \
+  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
+    LIBOK_PRINTF("\n");                                                        \
+  }                                                                            \
+                                                                               \
+  LIBOK_PRINTF("   operator: ok");                                             \
+  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
+    LIBOK_PRINTF("\n");                                                        \
+  }                                                                            \
+                                                                               \
+  LIBOK_PRINTF("   expected: \"truthy value\"");                               \
+  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
+    LIBOK_PRINTF("\n");                                                        \
+  }                                                                            \
+                                                                               \
+  LIBOK_PRINTF("   actual:   false");                                          \
+  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
+    LIBOK_PRINTF("\n");                                                        \
+  }                                                                            \
+                                                                               \
+  LIBOK_PRINTF("   stack:    |-");                                             \
+  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
+    LIBOK_PRINTF("\n");                                                        \
+  }                                                                            \
+                                                                               \
+  LIBOK_PRINTF("         at ");                                                \
+  LIBOK_PRINTF("%s (%s:%d)", __FUNCTION__, __FILE__, __LINE__);                \
+  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
+    LIBOK_PRINTF("\n");                                                        \
+  }                                                                            \
+                                                                               \
+  LIBOK_PRINTF("   ...");                                                      \
+  if (LIBOK_PRINTF_NEEDS_NEWLINE) {                                            \
+    LIBOK_PRINTF("\n");                                                        \
+  }                                                                            \
+})
+
+/**
+ * Called at the beginning of a test with an optional (NULL) label.
+ */
+void ok_begin (const char *label);
+
+/**
+ * Can be used to printf a comment.
+ */
+void ok_comment (const char *comment);
+
+/**
+ * Can be used to provide a multiline test explaination.
+ */
+void ok_explain (const char *explaination);
+
+/**
+ * Can be used to issue an emergency "Bail out!" statement with an
+ * optional comment.
+ */
+void ok_bail (const char *comment);
+
+/**
  * Completes tests and asserts that
  * the expected test count matches the
  * actual test count if the expected
  * count is greater than 0
  */
-void ok_done (void);
+bool ok_done (void);
 
 /**
  * Sets the expectation count
@@ -108,6 +180,12 @@ int ok_expected (void);
  */
 int ok_count (void);
 int ok_count_inc (void);
+
+/**
+ * Returns the not ok count
+ */
+int ok_failed (void);
+int ok_failed_inc (void);
 
 /**
  * Resets count and expected counters
